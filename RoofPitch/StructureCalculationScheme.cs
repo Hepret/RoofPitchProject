@@ -5,7 +5,7 @@ public class StructureCalculationScheme
     public double L { get; set; }
     public double P { get; set; }
     public double A_B { get; set; }
-    public double F { get; set; }
+    public double F => L * RoofAngle / 2;
     public double K => Math.Round((A + B) / (2 * B), 2);
     public double RY => Math.Round((1 + 2 * K) / 2, 2);
     public double N => Math.Round(2*F / L, 2);
@@ -14,12 +14,16 @@ public class StructureCalculationScheme
     public double C => Math.Round(D * A_B, 2);
     public double D => Math.Round(F / (1 + A_B), 2);
     public Dictionary<string,Point> Points { get; }
-    public StructureCalculationScheme(double l, double p, double aB, double f)
+    public double RoofAnglePercent => RoofAngle * 100;
+    public double RoofAngle { get; }
+    public double RoofAngleDegrees => (180 / Math.PI) *  Math.Atan(RoofAngleDegrees);
+    
+    public StructureCalculationScheme(double l, double p, double aB, double roofAngle)
     {   
         L = l;
         P = p;
-        A_B = aB;
-        F = f;
+        A_B = aB; 
+        RoofAngle = roofAngle;
         Points = GetPoints();
     }
     private Dictionary<string, Point> GetPoints()

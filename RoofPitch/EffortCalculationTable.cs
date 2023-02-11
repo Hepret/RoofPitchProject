@@ -52,4 +52,12 @@ public class EffortCalculationTable
         effortCalculationTable.Add(new EffortCalculation(P, point1, point2));
         return effortCalculationTable;
     }
+
+    public void PrintTable()
+    {
+        foreach (var effortCalculation in EffortCalculationTableList)
+        {
+            Console.WriteLine($"Name: {effortCalculation.Name}, Length: {Math.Round(effortCalculation.Length,5)}, Effort: {Math.Round(effortCalculation.Effort, 3)}");
+        }
+    }
 }
